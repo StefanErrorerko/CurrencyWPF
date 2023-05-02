@@ -3,7 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CurrencyWPF"
+        xmlns:local="clr-namespace:CurrencyWPF" 
+        xmlns:viewmodels="clr-namespace:CurrencyWPF.ViewModels" 
+        d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
@@ -11,8 +13,9 @@
         <DataGrid x:Name="dgCurrencies"
                   Margin="10,51,10,10"
                   CanUserAddRows="True"
-                  ItemsSource="{Binding}"
-                  AutoGenerateColumns="False">
+                  AutoGenerateColumns="false"
+                  ItemsSource="{Binding CurrenciesList}"
+                  >
             <DataGrid.Columns>
                 <DataGridTextColumn Width ="*" Binding="{Binding Path=Symbol}"/>
                 <DataGridTextColumn Width ="*" Header="Name"  Binding="{Binding Path=Name}"/>
@@ -33,9 +36,10 @@
                 Margin="5, 5, 0, 0"
                 Width="100"
                 Height="20"
-                Click="Button_Click"/>
+                Command="{Binding RefreshData}"/>
         
-        <Border Style="{DynamicResource SearchAreaBorder}" 
+        <Border x:Name="SearchAreaBorder"
+                Style="{DynamicResource SearchAreaBorder}" 
                 HorizontalAlignment="Right" 
                  VerticalAlignment="Top" 
                  Width="140" 

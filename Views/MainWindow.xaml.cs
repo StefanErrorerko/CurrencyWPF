@@ -17,6 +17,7 @@ using System.Net.Http.Headers;
 using System.Security.Policy;
 using System.Text.Json.Serialization;
 using CurrencyWPF.Processors;
+using CurrencyWPF.ViewModels;
 
 namespace CurrencyWPF.Views
 {
@@ -28,13 +29,7 @@ namespace CurrencyWPF.Views
         public MainWindow()
         {
             InitializeComponent();
-            ApiHelper.InitializeClient();
-        }
-
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var currencies = await CurrencyProcessor.LoadCurrencies();
-            dgCurrencies.DataContext = currencies;
+            DataContext = new MainWindowViewModel();
         }
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
