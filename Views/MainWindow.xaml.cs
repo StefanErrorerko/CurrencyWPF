@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Net.Http.Headers;
+using System.Security.Policy;
+using System.Text.Json.Serialization;
 
 namespace CurrencyWPF.Views
 {
@@ -23,6 +27,13 @@ namespace CurrencyWPF.Views
         public MainWindow()
         {
             InitializeComponent();
+            ApiHelper.InitializeClient();
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var currencies = await CurrencyProcessor.LoadCurrencies();
+            dgCurrencies.DataContext = currencies;
         }
     }
 }

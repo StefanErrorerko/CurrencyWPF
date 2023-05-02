@@ -14,12 +14,12 @@
                   ItemsSource="{Binding}"
                   AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Width ="*" Header="Symbol"/>
-                <DataGridTextColumn Width ="*" Header="Name" />
-                <DataGridTextColumn Width ="*" Header="Price" />
-                <DataGridTextColumn Width ="*" Header="ChangePercent" />
-                <DataGridTextColumn Width ="*" Header="VolumeFor24Hr" />
-                <DataGridTextColumn Width ="*" Header="MarketCapitalization" />
+                <DataGridTextColumn Width ="*" Header="Symbol" Binding="{Binding Path=Symbol}"/>
+                <DataGridTextColumn Width ="*" Header="Name" Binding="{Binding Path=Name}"/>
+                <DataGridTextColumn Width ="*" Header="Price" Binding="{Binding Path=PriceUsd}"/>
+                <DataGridTextColumn Width ="*" Header="ChangePercent" Binding="{Binding Path=ChangePercent24Hr}"/>
+                <DataGridTextColumn Width ="*" Header="VolumeFor24Hr" Binding="{Binding Path=VolumeUsd24Hr}"/>
+                <DataGridTextColumn Width ="*" Header="MarketCapitalization" Binding="{Binding Path=MarketCapUsd}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Current state of major cryptocurrencies" 
@@ -27,6 +27,12 @@
                HorizontalAlignment="Center" 
                Margin="0,16,0,0" 
                VerticalAlignment="Top"/>
-
+        <Button Content="Request data"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="5, 5, 0, 0"
+                Width="100"
+                Height="20"
+                Click="Button_Click"/>
     </Grid>
 </Window>
