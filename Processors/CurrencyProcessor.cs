@@ -11,9 +11,56 @@ using System.Threading.Tasks;
 
 namespace CurrencyWPF.Processors
 {
-    public static class CurrencyProcessor
+    public class CurrencyProcessor
     {
-        public static async Task<List<Currency>> LoadCurrencies()
+        private Task<List<Currency>>? _periodicTask;
+        private readonly PeriodicTimer _timer;
+        private readonly CancellationTokenSource _cts = new();
+
+        public CurrencyProcessor(TimeSpan interval)
+        {
+            _timer = new PeriodicTimer(interval);
+        }
+        public CurrencyProcessor()
+        {
+            _timer = new PeriodicTimer(TimeSpan.FromMilliseconds(10000));
+        }
+
+        public Task<List<Currency>> StartPeriodicLoadCurrencies()
+        {
+            _periodicTask = RunAsync();
+            return _periodicTask;
+        }
+
+        private async Task<List<Currency>> RunAsync()
+        {
+            try
+            {
+                while (await _timer.WaitForNextTickAsync(_cts.Token))
+                {
+                    return await LoadCurrencies();
+                }
+                return null;
+            }
+            catch (OperationCanceledException) 
+            {
+                return null;
+            }
+        }
+
+        public async Task StopAsync()
+        {
+            if (_periodicTask is null)
+            {
+                return;
+            }
+
+            _cts.Cancel();
+            await _periodicTask;
+            _cts.Dispose();
+        }
+
+        public async Task<List<Currency>> LoadCurrencies()
         {
             string url = "http://api.coincap.io/v2/assets";
             using (var response = await ApiHelper.Client.GetAsync(url))
@@ -29,11 +76,6 @@ namespace CurrencyWPF.Processors
                     throw new Exception(response.ReasonPhrase);
                 }
             }
-        }
-
-        public static async Task RunPeriodicAsync(TimeSpan interval)
-        {
-            var timer = new PeriodicTimer(interval);
         }
     }
 }

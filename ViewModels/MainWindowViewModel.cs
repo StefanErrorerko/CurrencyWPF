@@ -67,7 +67,8 @@ namespace CurrencyWPF.ViewModels
         #region Command Handlers
         private async void RefreshDataCommandHandler()
         {
-            CurrenciesList = await CurrencyProcessor.LoadCurrencies();
+            var cp = new CurrencyProcessor(TimeSpan.FromMilliseconds(3000));
+            CurrenciesList = await cp.StartPeriodicLoadCurrencies();
             Currencies = new ObservableCollection<Currency>(CurrenciesList);
         }
         #endregion
