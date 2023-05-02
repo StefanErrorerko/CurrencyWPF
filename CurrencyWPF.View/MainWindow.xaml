@@ -6,7 +6,14 @@
         xmlns:local="clr-namespace:CurrencyWPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
     <Grid>
+        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,42,10,10"/>
+        <Label Content="Current state of major cryptocurrencies" 
+               Style="{DynamicResource MainWindowLbl}"
+               HorizontalAlignment="Center" 
+               Margin="0,16,0,0" 
+               VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
