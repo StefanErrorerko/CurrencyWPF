@@ -8,8 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="CurrencyWPF.Model\" />
-    <Folder Include="CurrencyWPF.ViewModel\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
 
 </Project>

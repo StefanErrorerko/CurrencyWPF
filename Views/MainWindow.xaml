@@ -1,0 +1,32 @@
+﻿<Window x:Class="CurrencyWPF.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CurrencyWPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Grid>
+        <DataGrid x:Name="dgCurrencies"
+                  Margin="10,51,10,10"
+                  CanUserAddRows="True"
+                  ItemsSource="{Binding}"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width ="*" Header="Symbol"/>
+                <DataGridTextColumn Width ="*" Header="Name" />
+                <DataGridTextColumn Width ="*" Header="Price" />
+                <DataGridTextColumn Width ="*" Header="ChangePercent" />
+                <DataGridTextColumn Width ="*" Header="VolumeFor24Hr" />
+                <DataGridTextColumn Width ="*" Header="MarketCapitalization" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Current state of major cryptocurrencies" 
+               Style="{DynamicResource MainWindowLbl}"
+               HorizontalAlignment="Center" 
+               Margin="0,16,0,0" 
+               VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
