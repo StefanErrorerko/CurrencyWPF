@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using System.Net.Http.Headers;
 using System.Security.Policy;
 using System.Text.Json.Serialization;
+using CurrencyWPF.Processors;
 
 namespace CurrencyWPF.Views
 {
@@ -34,6 +35,18 @@ namespace CurrencyWPF.Views
         {
             var currencies = await CurrencyProcessor.LoadCurrencies();
             dgCurrencies.DataContext = currencies;
+        }
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (String.IsNullOrEmpty(SearchTextBox.Text))
+            {
+                SearchTextBoxHiddenLabel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                SearchTextBoxHiddenLabel.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

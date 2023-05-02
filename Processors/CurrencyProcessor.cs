@@ -8,16 +8,16 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CurrencyWPF
+namespace CurrencyWPF.Processors
 {
     public static class CurrencyProcessor
     {
         public static async Task<List<Currency>> LoadCurrencies()
         {
-            String url = "http://api.coincap.io/v2/assets";
-            using(var response = await ApiHelper.Client.GetAsync(url))
+            string url = "http://api.coincap.io/v2/assets";
+            using (var response = await ApiHelper.Client.GetAsync(url))
             {
-                if(response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsAsync<CurrencyJsonData>();
                     var currencies = json.Data.ToList();

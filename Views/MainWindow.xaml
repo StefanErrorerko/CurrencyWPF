@@ -14,8 +14,8 @@
                   ItemsSource="{Binding}"
                   AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Width ="*" Header="Symbol" Binding="{Binding Path=Symbol}"/>
-                <DataGridTextColumn Width ="*" Header="Name" Binding="{Binding Path=Name}"/>
+                <DataGridTextColumn Width ="*" Binding="{Binding Path=Symbol}"/>
+                <DataGridTextColumn Width ="*" Header="Name"  Binding="{Binding Path=Name}"/>
                 <DataGridTextColumn Width ="*" Header="Price" Binding="{Binding Path=PriceUsd}"/>
                 <DataGridTextColumn Width ="*" Header="ChangePercent" Binding="{Binding Path=ChangePercent24Hr}"/>
                 <DataGridTextColumn Width ="*" Header="VolumeFor24Hr" Binding="{Binding Path=VolumeUsd24Hr}"/>
@@ -34,5 +34,36 @@
                 Width="100"
                 Height="20"
                 Click="Button_Click"/>
+        
+        <Border Style="{DynamicResource SearchAreaBorder}" 
+                HorizontalAlignment="Right" 
+                 VerticalAlignment="Top" 
+                 Width="140" 
+                 Height="20" 
+                 Margin="0, 25, 10, 0">
+           <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Source="/Resources/magnifier.png"
+                    Grid.Row="0" Grid.Column="0"
+                    Width="50"/>
+                <Label x:Name="SearchTextBoxHiddenLabel"
+                       Grid.Row="0" Grid.Column="1" 
+                       Padding="2,0,0,0"
+                       Content="Search by the name"
+                       Style="{DynamicResource SearchTextBoxHiddenLabel}"/>
+                <TextBox x:Name="SearchTextBox" 
+                        Grid.Row="0" Grid.Column="1"
+                        Style="{DynamicResource SearchTextBox}"
+                        TextChanged="SearchTextBox_TextChanged"/>
+            </Grid> 
+        </Border>
+        
+        
     </Grid>
 </Window>

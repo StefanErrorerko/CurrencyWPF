@@ -2,5 +2,20 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style x:Key="MainWindowLbl" TargetType="Label">
         <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontFamily" Value="Helvetica" />
+    </Style>
+    <Style x:Key="SearchAreaBorder" TargetType="Border">
+        <Setter Property="BorderBrush" Value="Gray" />
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="3"/>
+    </Style>
+    <Style x:Key="SearchTextBox" TargetType="TextBox">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+    <Style x:Key="SearchTextBoxHiddenLabel" TargetType="Label">
+        <Setter Property="FontStyle" Value="Italic"/>
+        <Setter Property="Opacity" Value="0.5" />
+        <Setter Property="Background" Value="Transparent"/>
     </Style>
 </ResourceDictionary>
