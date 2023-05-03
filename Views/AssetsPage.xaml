@@ -18,7 +18,7 @@
                   >
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">
-                    <EventSetter Event="PreviewMouseDown" Handler="DataGridCell_PreviewMouseDown" />
+                    <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick" />
                 </Style>
             </DataGrid.CellStyle>
             <DataGrid.Columns>

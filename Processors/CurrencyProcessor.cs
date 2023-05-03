@@ -40,11 +40,11 @@ namespace CurrencyWPF.Processors
                 {
                     return await LoadCurrencies();
                 }
-                return null;
+                throw new NotImplementedException();
             }
             catch (OperationCanceledException) 
             {
-                return null;
+                throw new NotImplementedException();
             }
         }
 

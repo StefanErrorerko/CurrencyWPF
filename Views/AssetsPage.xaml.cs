@@ -38,7 +38,7 @@ namespace CurrencyWPF.Views
             }
         }
 
-        private void DataGridCell_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        private void DataGridCell_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var currencyPage = new CurrencyPage();
             this.Content = currencyPage;
