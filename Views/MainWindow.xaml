@@ -37,6 +37,13 @@
                 Width="100"
                 Height="20"
                 Command="{Binding RefreshData}"/>
+        <Button Content="Stop Updating"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="5, 25, 0, 0"
+                Width="100"
+                Height="20"
+                Command="{Binding StopUpdate}"/>
         
         <Border x:Name="SearchAreaBorder"
                 Style="{DynamicResource SearchAreaBorder}" 

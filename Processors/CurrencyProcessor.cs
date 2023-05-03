@@ -26,10 +26,10 @@ namespace CurrencyWPF.Processors
             _timer = new PeriodicTimer(TimeSpan.FromMilliseconds(10000));
         }
 
-        public Task<List<Currency>> StartPeriodicLoadCurrencies()
+        public async Task<List<Currency>> StartPeriodicLoadCurrencies()
         {
             _periodicTask = RunAsync();
-            return _periodicTask;
+            return await _periodicTask;
         }
 
         private async Task<List<Currency>> RunAsync()

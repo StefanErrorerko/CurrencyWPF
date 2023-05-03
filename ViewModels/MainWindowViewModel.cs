@@ -25,7 +25,7 @@ namespace CurrencyWPF.ViewModels
         #region Properties
         Currency _selectedCurrency;
         List<Currency> _currenciesList;
-
+        CurrencyProcessor _cp;
         #endregion
 
         #region Fields
@@ -57,19 +57,34 @@ namespace CurrencyWPF.ViewModels
             ApiHelper.InitializeClient();
 
             RefreshData = new Command(() => RefreshDataCommandHandler());
+            StopUpdate = new Command(() => StopUpdateCommandHandler());
         }
         #endregion
 
         #region Commands
         public Command RefreshData { get; }
+        public Command StopUpdate { get; }
         #endregion
 
         #region Command Handlers
         private async void RefreshDataCommandHandler()
         {
-            var cp = new CurrencyProcessor(TimeSpan.FromMilliseconds(3000));
-            CurrenciesList = await cp.StartPeriodicLoadCurrencies();
+            _cp = new CurrencyProcessor();
+            CurrenciesList = await _cp.LoadCurrencies();
             Currencies = new ObservableCollection<Currency>(CurrenciesList);
+
+            //async prompt 
+            //if(_cp is null)
+            //{
+            //    _cp = new CurrencyProcessor(TimeSpan.FromMilliseconds(3000));
+            //    CurrenciesList = await _cp.StartPeriodicLoadCurrencies();
+            //    Currencies = new ObservableCollection<Currency>(CurrenciesList);
+            //}
+            
+        }
+        private async void StopUpdateCommandHandler()
+        {
+            await _cp.StopAsync();
         }
         #endregion
     }

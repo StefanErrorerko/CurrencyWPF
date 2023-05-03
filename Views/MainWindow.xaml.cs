@@ -43,5 +43,10 @@ namespace CurrencyWPF.Views
                 SearchTextBoxHiddenLabel.Visibility = Visibility.Hidden;
             }
         }
+
+        private void DataGridCell_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
