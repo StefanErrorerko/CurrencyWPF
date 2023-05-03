@@ -18,11 +18,11 @@ namespace CurrencyWPF.ViewModels
     {
 
         #region Properties
-        object _currentView;
+        ViewModelBase _currentView;
         #endregion
 
         #region Fields
-        public object CurrentView
+        public ViewModelBase CurrentView
         {
             get => _currentView;
             set
@@ -37,7 +37,7 @@ namespace CurrencyWPF.ViewModels
         public MainWindowVM()
         {
             AssetsOpen = new RelayCommand(() =>  AssetsOpenCommandHandler());
-            CurrentView = new AssetsPage();
+            CurrentView = new AssetsPageVM();
         }
         #endregion
 
@@ -46,7 +46,7 @@ namespace CurrencyWPF.ViewModels
         #endregion
 
         #region Command Handlers
-        private void AssetsOpenCommandHandler() => CurrentView = new AssetsPage();
+        private void AssetsOpenCommandHandler() => CurrentView = new AssetsPageVM();
         #endregion
     }
 }

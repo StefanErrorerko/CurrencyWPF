@@ -1,4 +1,5 @@
-﻿using CurrencyWPF.Utilities;
+﻿using CurrencyWPF.Models;
+using CurrencyWPF.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,5 +12,21 @@ namespace CurrencyWPF.ViewModels
 {
     public class CurrencyPageVM : ViewModelBase
     {
+        Currency _currentCurrency;
+
+        public Currency CurrentCurrency
+        {
+            get => _currentCurrency;
+            set
+            {
+                _currentCurrency = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public CurrencyPageVM()
+        {
+
+        }
     }
 }

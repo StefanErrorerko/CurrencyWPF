@@ -24,12 +24,11 @@ namespace CurrencyWPF.Views
         public CurrencyPage()
         {
             InitializeComponent();
-            DataContext = new CurrencyPageVM();
         }
 
-        private void ButtonBackToMain_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+            (this.Parent as AssetsPage).Content = null;
         }
     }
 }

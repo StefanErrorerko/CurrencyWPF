@@ -18,7 +18,4 @@
         <Setter Property="Opacity" Value="0.5" />
         <Setter Property="Background" Value="Transparent"/>
     </Style>
-    <Style x:Key="ButtonNavigation" TargetType="RadioButton">
-        
-    </Style>
 </ResourceDictionary>

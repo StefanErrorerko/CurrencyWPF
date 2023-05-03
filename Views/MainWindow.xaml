@@ -7,8 +7,17 @@
         xmlns:viewmodels="clr-namespace:CurrencyWPF.ViewModels" 
         d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowVM}"
         mc:Ignorable="d"
-        Title="Crypee" Height="450" Width="800">
+        Title="Crype" 
+        Height="450" Width="800"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None" 
+        Background="Transparent">
 
+    <Window.DataContext>
+        <viewmodels:MainWindowVM />
+    </Window.DataContext>
+    
     <Grid>
         <Border Background="#fffffc"
                 CornerRadius="15"/>
@@ -26,7 +35,8 @@
 
                 <StackPanel Height="400"
                             Width="220">
-                    <RadioButton Style="{StaticResource ButtonNavigation}"
+                    <RadioButton x:Name="AssetsButton"
+                                 Style="{StaticResource MainButton}"
                                  Command="{Binding AssetsOpen}"
                                  IsChecked="True">
                         <Grid>

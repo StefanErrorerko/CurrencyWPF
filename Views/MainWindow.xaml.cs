@@ -29,10 +29,6 @@ namespace CurrencyWPF.Views
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowVM();
-        }
-
-        // Placeholder above the SearchTextBox area
-        
+        }        
     }
 }

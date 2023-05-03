@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CurrencyWPF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,9 +24,9 @@ namespace CurrencyWPF.Views
         public AssetsPage()
         {
             InitializeComponent();
-            DataContext = new ViewModels.AssetsPageVM();
         }
 
+        // Placeholder above the SearchTextBox area
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (String.IsNullOrEmpty(SearchTextBox.Text))
@@ -40,7 +41,7 @@ namespace CurrencyWPF.Views
 
         private void DataGridCell_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var currencyPage = new CurrencyPage();
+            var currencyPage = new CurrencyPageVM();
             this.Content = currencyPage;
         }
     }
