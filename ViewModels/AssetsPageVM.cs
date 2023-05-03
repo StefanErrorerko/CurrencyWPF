@@ -1,27 +1,18 @@
-﻿using System;
+﻿using CurrencyWPF.Commands;
+using CurrencyWPF.Models;
+using CurrencyWPF.Processors;
+using CurrencyWPF.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using CurrencyWPF.Models;
-using CurrencyWPF.Commands;
-using CurrencyWPF.Processors;
 
 namespace CurrencyWPF.ViewModels
 {
-    public class MainWindowViewModel : INotifyPropertyChanged
+    public class AssetsPageVM : ViewModelBase
     {
-        #region Events
-        public event PropertyChangedEventHandler? PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] String prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-        }
-        #endregion
-
         #region Properties
         Currency _selectedCurrency;
         List<Currency> _currenciesList;
@@ -51,22 +42,22 @@ namespace CurrencyWPF.ViewModels
         #endregion
 
         #region Constructors
-        public MainWindowViewModel()
+        public AssetsPageVM()
         {
             Currencies = new ObservableCollection<Currency>();
             ApiHelper.InitializeClient();
 
-            RefreshData = new Command(() => RefreshDataCommandHandler());
-            StopUpdate = new Command(() => StopUpdateCommandHandler());
+            RefreshData = new RelayCommand(() => RefreshDataCommandHandler());
+            StopUpdate = new RelayCommand(() => StopUpdateCommandHandler());
         }
         #endregion
 
         #region Commands
-        public Command RefreshData { get; }
-        public Command StopUpdate { get; }
+        public RelayCommand RefreshData { get; }
+        public RelayCommand StopUpdate { get; }
         #endregion
 
-        #region Command Handlers
+        #region CommandHandlers
         private async void RefreshDataCommandHandler()
         {
             _cp = new CurrencyProcessor();
@@ -80,7 +71,7 @@ namespace CurrencyWPF.ViewModels
             //    CurrenciesList = await _cp.StartPeriodicLoadCurrencies();
             //    Currencies = new ObservableCollection<Currency>(CurrenciesList);
             //}
-            
+
         }
         private async void StopUpdateCommandHandler()
         {

@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace CurrencyWPF.Commands
 {
-    public class Command : ICommand
+    public class RelayCommand : ICommand
     {
         readonly Action<object> _execute;
         readonly Func<object, bool> _canExecute;
@@ -18,7 +18,7 @@ namespace CurrencyWPF.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        public Command(Action<object> execute)
+        public RelayCommand(Action<object> execute)
         {
             if(execute == null)
             {
@@ -27,14 +27,14 @@ namespace CurrencyWPF.Commands
             _execute = execute;
         }
 
-        public Command(Action execute) : this(o => execute())
+        public RelayCommand(Action execute) : this(o => execute())
         {
             if (execute == null)
             {
                 throw new ArgumentNullException(nameof(execute));
             }
         }
-        public Command(Action<object> execute, Func<object, bool> canExecute) : this(execute)
+        public RelayCommand(Action<object> execute, Func<object, bool> canExecute) : this(execute)
         {
             if (canExecute == null)
             {
@@ -43,7 +43,7 @@ namespace CurrencyWPF.Commands
 
             _canExecute = canExecute;
         }
-        public Command(Action execute, Func<bool> canExecute) : this(o => execute(), o => canExecute())
+        public RelayCommand(Action execute, Func<bool> canExecute) : this(o => execute(), o => canExecute())
         {
             if (execute == null)
             {
@@ -64,9 +64,6 @@ namespace CurrencyWPF.Commands
             return true;
         }
 
-        public void Execute(object parameter)
-        {
-            _execute(parameter);
-        }
+        public void Execute(object parameter) => _execute(parameter);
     }
 }

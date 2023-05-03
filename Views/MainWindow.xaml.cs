@@ -29,24 +29,10 @@ namespace CurrencyWPF.Views
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel();
+            DataContext = new MainWindowVM();
         }
 
-        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (String.IsNullOrEmpty(SearchTextBox.Text))
-            {
-                SearchTextBoxHiddenLabel.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                SearchTextBoxHiddenLabel.Visibility = Visibility.Hidden;
-            }
-        }
-
-        private void DataGridCell_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
+        // Placeholder above the SearchTextBox area
+        
     }
 }

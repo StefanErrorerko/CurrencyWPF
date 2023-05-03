@@ -12,12 +12,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Remove="Styles\Dictionary.xaml" />
+    <Page Remove="Utilities\DataTemplate.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Resources\magnifier.png" />
+    <Resource Include="Styles\Dictionary.xaml" />
+    <Resource Include="Utilities\DataTemplate.xaml" />
   </ItemGroup>
 
 </Project>

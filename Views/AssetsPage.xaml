@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="CurrencyWPF.Views.AssetsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CurrencyWPF.Views"
+      xmlns:vm="clr-namespace:CurrencyWPF.ViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid>
+        <DataGrid x:Name="dgCurrencies"
+                  Margin="10,51,10,10"
+                  CanUserAddRows="True"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  ItemsSource="{Binding CurrenciesList}"
+                  >
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <EventSetter Event="PreviewMouseDown" Handler="DataGridCell_PreviewMouseDown" />
+                </Style>
+            </DataGrid.CellStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Width ="*" Binding="{Binding Path=Symbol}"/>
+                <DataGridTextColumn Width ="*" Header="Name"  Binding="{Binding Path=Name}"/>
+                <DataGridTextColumn Width ="*" Header="Price" Binding="{Binding Path=PriceUsd}"/>
+                <DataGridTextColumn Width ="*" Header="ChangePercent" Binding="{Binding Path=ChangePercent24Hr}"/>
+                <DataGridTextColumn Width ="*" Header="VolumeFor24Hr" Binding="{Binding Path=VolumeUsd24Hr}"/>
+                <DataGridTextColumn Width ="*" Header="MarketCapitalization" Binding="{Binding Path=MarketCapUsd}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Current state of major cryptocurrencies" 
+               Style="{DynamicResource MainWindowLbl}"
+               HorizontalAlignment="Center" 
+               Margin="0,16,0,0" 
+               VerticalAlignment="Top"/>
+        <Button Content="Request data"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="5, 5, 0, 0"
+                Width="100"
+                Height="20"
+                Command="{Binding RefreshData}"/>
+        <Button Content="Stop Updating"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="5, 25, 0, 0"
+                Width="100"
+                Height="20"
+                Command="{Binding StopUpdate}"/>
+
+        <Border x:Name="SearchAreaBorder"
+                Style="{DynamicResource SearchAreaBorder}" 
+                HorizontalAlignment="Right" 
+                 VerticalAlignment="Top" 
+                 Width="140" 
+                 Height="20" 
+                 Margin="0, 25, 10, 0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Source="/Resources/magnifier.png"
+                    Grid.Row="0" Grid.Column="0"
+                    Width="50"/>
+                <Label x:Name="SearchTextBoxHiddenLabel"
+                       Grid.Row="0" Grid.Column="1" 
+                       Padding="2,0,0,0"
+                       Content="Search by the name"
+                       Style="{DynamicResource SearchTextBoxHiddenLabel}"/>
+                <TextBox x:Name="SearchTextBox" 
+                        Grid.Row="0" Grid.Column="1"
+                        Style="{DynamicResource SearchTextBox}"
+                        TextChanged="SearchTextBox_TextChanged"/>
+            </Grid>
+        </Border>
+
+
+    </Grid>
+</UserControl>

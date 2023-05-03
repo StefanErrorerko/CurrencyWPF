@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:CurrencyWPF.ViewModels"
+                    xmlns:views="clr-namespace:CurrencyWPF.Views">
+    <!--<DataTemplate DataType="{x:Type vm:AssetsPageVM}">
+        <views:AssetsPage/>
+    </DataTemplate>-->
+    
+</ResourceDictionary>
