@@ -96,16 +96,16 @@ namespace CurrencyWPF.Processors
             }
         }
 
-        public static async Task<List<Currency>> GetAssetsByIdHistory(String id, String interval)
+        public static async Task<List<CurrencyInfo>> GetAssetsByIdHistory(String id, String interval)
         {
             var url = _apiUrl + $"assets/{id}/history?interval={interval}";
             using (var response = await ApiHelper.Client.GetAsync(url))
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    var json = await response.Content.ReadAsAsync<JsonArrayData<Currency>>();
-                    var currencies = json.Data.ToList();
-                    return currencies;
+                    var json = await response.Content.ReadAsAsync<JsonArrayData<CurrencyInfo>>();
+                    var currencyInfo = json.Data.ToList();
+                    return currencyInfo;
                 }
                 else
                 {

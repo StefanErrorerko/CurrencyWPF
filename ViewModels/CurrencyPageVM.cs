@@ -16,9 +16,9 @@ namespace CurrencyWPF.ViewModels
     public class CurrencyPageVM : ViewModelBase
     {
         Currency _currentCurrency;
-        List<Currency> _currencyHistoryList;
+        List<CurrencyInfo> _currencyHistoryList;
         
-        public ObservableCollection<Currency> CurrenciesHistory = new();
+        public ObservableCollection<CurrencyInfo> CurrenciesHistory = new();
         public Currency CurrentCurrency
         {
             get => _currentCurrency;
@@ -28,7 +28,7 @@ namespace CurrencyWPF.ViewModels
                 OnPropertyChanged();
             }
         }
-        public List<Currency> CurrencyHistoryList
+        public List<CurrencyInfo> CurrencyHistoryList
         {
             get => _currencyHistoryList;
             set

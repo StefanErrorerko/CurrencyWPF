@@ -32,10 +32,12 @@ namespace CurrencyWPF.Views
             if (String.IsNullOrEmpty(SearchTextBox.Text))
             {
                 SearchTextBoxHiddenLabel.Visibility = Visibility.Visible;
+                (DataContext as AssetsPageVM).SearchValue = String.Empty;
             }
             else
             {
                 SearchTextBoxHiddenLabel.Visibility = Visibility.Hidden;
+                (DataContext as AssetsPageVM).SearchValue = SearchTextBox.Text;
             }
         }
 

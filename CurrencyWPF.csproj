@@ -8,6 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\backward.png" />
+    <None Remove="Resources\crypto.png" />
+    <None Remove="Resources\list.png" />
     <None Remove="Resources\magnifier.png" />
   </ItemGroup>
 
@@ -17,11 +20,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\backward.png" />
+    <Resource Include="Resources\list.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\crypto.png" />
     <Resource Include="Resources\magnifier.png" />
     <Resource Include="Styles\Dictionary.xaml" />
     <Resource Include="Utilities\DataTemplate.xaml" />

@@ -15,7 +15,7 @@
     
     <Grid>
         <DataGrid x:Name="dgCurrencies"
-                  Margin="10,51,10,10"
+                  Margin="10,60,10,10"
                   CanUserAddRows="True"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
@@ -30,17 +30,18 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Width ="*" Binding="{Binding Symbol}"/>
                 <DataGridTextColumn Width ="*" Header="Name"  Binding="{Binding Name}"/>
-                <DataGridTextColumn Width ="*" Header="Price" Binding="{Binding PriceUsd}"/>
-                <DataGridTextColumn Width ="*" Header="ChangePercent" Binding="{Binding ChangePercent24Hr}"/>
-                <DataGridTextColumn Width ="*" Header="VolumeFor24Hr" Binding="{Binding VolumeUsd24Hr}"/>
-                <DataGridTextColumn Width ="*" Header="MarketCapitalization" Binding="{Binding MarketCapUsd}"/>
+                <DataGridTextColumn Width ="*" Header="Price" Binding="{Binding PriceUsd, StringFormat=N2}"/>
+                <DataGridTextColumn Width ="*" Header="ChangePercent" Binding="{Binding ChangePercent24Hr, StringFormat=N4}"/>
+                <DataGridTextColumn Width ="*" Header="VolumeFor24Hr" Binding="{Binding VolumeUsd24Hr, StringFormat=N2}"/>
+                <DataGridTextColumn Width ="*" Header="MarketCapitalization" Binding="{Binding MarketCapUsd, StringFormat=N2}"/>
             </DataGrid.Columns>
         </DataGrid>
+
         <Label x:Name="Lbl"
-               Content="Current state of major cryptocurrencies" 
+               Content="Current state of Top-25 major cryptocurrencies" 
                Style="{DynamicResource MainWindowLbl}"
                HorizontalAlignment="Center" 
-               Margin="0,16,0,0" 
+               Margin="0,10,0,5" 
                VerticalAlignment="Top"/>
 
         <Border x:Name="SearchAreaBorder"
@@ -49,7 +50,7 @@
                  VerticalAlignment="Top" 
                  Width="140" 
                  Height="20" 
-                 Margin="0, 25, 10, 0">
+                 Margin="0, 35, 10, 0">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition />
@@ -69,10 +70,11 @@
                 <TextBox x:Name="SearchTextBox" 
                         Grid.Row="0" Grid.Column="1"
                         Style="{DynamicResource SearchTextBox}"
-                        TextChanged="SearchTextBox_TextChanged"/>
+                        TextChanged="SearchTextBox_TextChanged"
+                         Text="{Binding SearchValue}"/>
             </Grid>
         </Border>
 
-
+        
     </Grid>
 </UserControl>

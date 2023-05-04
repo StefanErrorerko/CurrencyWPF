@@ -10,12 +10,12 @@
         <Setter Property="Margin" Value="70,0,0,0"/>
     </Style>
 
-    <Style x:Key="SmallText" TargetType="TextBlock">
+    <Style x:Key="CurrencyText" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="Helvetica"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="Foreground" Value="#fdffb6" />
-        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Foreground" Value="#000814" />
+        <Setter Property="FontSize" Value="25" />
         <Setter Property="Margin" Value="5,0,0,0"/>
     </Style>
 </ResourceDictionary>

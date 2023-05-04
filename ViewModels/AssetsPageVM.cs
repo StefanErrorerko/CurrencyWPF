@@ -14,13 +14,26 @@ namespace CurrencyWPF.ViewModels
 {
     public class AssetsPageVM : ViewModelBase
     {
+        public const int topNum = 25;
+
         #region Properties
         Currency _selectedCurrency;
         List<Currency> _currenciesList;
+        String _searchValue;
         #endregion
 
         #region Fields
         public ObservableCollection<Currency> Currencies { get; set; }
+        public String SearchValue
+        {
+            get => _searchValue;
+            set
+            {
+                _searchValue = value;
+                OnPropertyChanged(nameof(SearchValue));
+                SearchByValue();
+            }
+        }
         public Currency SelectedCurrency
         {
             get => _selectedCurrency;
@@ -57,7 +70,9 @@ namespace CurrencyWPF.ViewModels
         #region CommandHandlers
         private async void RequestData()
         {
-            CurrenciesList = await CurrencyProcessor.GetAssets();
+            CurrenciesList = (await CurrencyProcessor.GetAssets())
+                                .Take(topNum)
+                                .ToList();
             Currencies = new ObservableCollection<Currency>(CurrenciesList);
 
             //async prompt 
@@ -73,6 +88,25 @@ namespace CurrencyWPF.ViewModels
         {
             
             //await _cp.StopAsync();
+        }
+
+        private void SearchByValue()
+        {
+            if (String.IsNullOrEmpty(SearchValue))
+            {
+                CurrenciesList = Currencies.ToList();
+            }
+            else
+            {
+                CurrenciesList = Currencies
+                    .Where(c => c.Id
+                        .Contains(SearchValue, StringComparison.OrdinalIgnoreCase) 
+                            || c.Name.Contains(SearchValue, StringComparison.OrdinalIgnoreCase)
+                            || c.Symbol.Contains(SearchValue, StringComparison.OrdinalIgnoreCase))
+                    .Select(c => c)
+                    .ToList();
+            }
+            
         }
         #endregion
     }
