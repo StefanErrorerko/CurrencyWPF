@@ -15,4 +15,6 @@ A user is able to:
 Shortcuts of app:
 ![image](https://user-images.githubusercontent.com/76735417/236263090-9d8d3dc4-a7ae-4999-9676-e99d74658ae7.png)
 ![image](https://user-images.githubusercontent.com/76735417/236263502-4ff6cf90-c010-4e48-8f0b-84ddc3edff9d.png)
+![image](https://user-images.githubusercontent.com/76735417/236264352-f3234b85-c9dc-4ecb-950b-5401712a56ef.png)
+
 
