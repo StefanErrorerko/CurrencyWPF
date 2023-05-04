@@ -6,15 +6,15 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace CurrencyWPF.ViewModels
 {
     public class AssetsPageVM : ViewModelBase
     {
+        #region Constants
+        // Const num of top currencies to display
         public const int topNum = 25;
+        #endregion
 
         #region Properties
         Currency _selectedCurrency;
@@ -74,22 +74,16 @@ namespace CurrencyWPF.ViewModels
                                 .Take(topNum)
                                 .ToList();
             Currencies = new ObservableCollection<Currency>(CurrenciesList);
-
-            //async prompt 
-            //if(_cp is null)
-            //{
-            //    _cp = new CurrencyProcessor(TimeSpan.FromMilliseconds(3000));
-            //    CurrenciesList = await _cp.StartPeriodicLoadCurrencies();
-            //    Currencies = new ObservableCollection<Currency>(CurrenciesList);
-            //}
-
         }
         private async void StopUpdateCommandHandler()
         {
-            
-            //await _cp.StopAsync();
+            await CurrencyProcessor.StopAsync();
         }
 
+
+        #endregion
+
+        #region Methods
         private void SearchByValue()
         {
             if (String.IsNullOrEmpty(SearchValue))
@@ -100,13 +94,13 @@ namespace CurrencyWPF.ViewModels
             {
                 CurrenciesList = Currencies
                     .Where(c => c.Id
-                        .Contains(SearchValue, StringComparison.OrdinalIgnoreCase) 
+                        .Contains(SearchValue, StringComparison.OrdinalIgnoreCase)
                             || c.Name.Contains(SearchValue, StringComparison.OrdinalIgnoreCase)
                             || c.Symbol.Contains(SearchValue, StringComparison.OrdinalIgnoreCase))
                     .Select(c => c)
                     .ToList();
             }
-            
+
         }
         #endregion
     }

@@ -11,21 +11,15 @@ using System.Threading.Tasks;
 
 namespace CurrencyWPF.Processors
 {
+    // initializes and send requests to api
     public static class CurrencyProcessor
     {
         private static Task<List<Currency>>? _periodicTask;
-        private readonly static PeriodicTimer _timer;
+        // due to coincap api rules, user can send 200 requests per minutes in maximum
+        private readonly static PeriodicTimer _timer = new PeriodicTimer(TimeSpan.FromMilliseconds(3000));
         private readonly static CancellationTokenSource _cts = new();
         private readonly static String _apiUrl = "http://api.coincap.io/v2/";
 
-        //public static CurrencyProcessor(TimeSpan interval)
-        //{
-        //    _timer = new PeriodicTimer(interval);
-        //}
-        //public CurrencyProcessor()
-        //{
-        //    _timer = new PeriodicTimer(TimeSpan.FromMilliseconds(10000));
-        //}
 
         public static async Task<List<Currency>> StartPeriodicLoadCurrencies()
         {
