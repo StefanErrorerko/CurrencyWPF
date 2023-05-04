@@ -40,11 +40,10 @@
                                  Command="{Binding AssetsOpen}"
                                  IsChecked="True">
                         <Grid>
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="/Resources/crypto.png"
-                                   Height="20"/>
-                                <TextBlock Text="Assets" />
-                            </StackPanel>
+                            <Image  Style="{DynamicResource Icon}"
+                                        Source="/Resources/crypto.png" />
+                            <TextBlock Style="{DynamicResource MediumText}"
+                                            Text="Assets" />
                         </Grid>
                     </RadioButton>
                 </StackPanel>

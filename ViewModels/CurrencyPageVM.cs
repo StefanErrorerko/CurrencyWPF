@@ -24,9 +24,12 @@ namespace CurrencyWPF.ViewModels
             }
         }
 
-        public CurrencyPageVM()
+        private CurrencyPageVM()
         {
-
+        }
+        public CurrencyPageVM(Currency currency) : this()
+        {
+            CurrentCurrency = currency;
         }
     }
 }

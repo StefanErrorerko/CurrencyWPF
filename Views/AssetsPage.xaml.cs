@@ -41,8 +41,8 @@ namespace CurrencyWPF.Views
 
         private void DataGridCell_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var currencyPage = new CurrencyPageVM();
-            this.Content = currencyPage;
+            var currencyPage = new CurrencyPageVM((DataContext as AssetsPageVM).SelectedCurrency);
+            (Parent as MainWindow).AssetsButton.Click.Execute();
         }
     }
 }

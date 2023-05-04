@@ -1,17 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CurrencyWPF.Models
 {
-    public class Currency
+    public class Currency :INotifyPropertyChanged
     {
         public String Id { get; set; } = String.Empty;
         public Int16 Rank { get; set; }
         public String Symbol { get; set; } = String.Empty;
-        public String Name { get; set; } = String.Empty;
+        String _name;
+        public String Name 
+        {
+            get => _name;
+            set
+            { 
+                if (_name != value)
+                {
+                    _name = value;
+                }
+                OnPropertyChanged();
+            }
+        }
         public Decimal Supply { get; set; }
         public Decimal? MaxSupply { get; set; }
         public Decimal MarketCapUsd { get; set; }
@@ -20,5 +34,11 @@ namespace CurrencyWPF.Models
         public Decimal ChangePercent24Hr { get; set; }
         public Decimal? Vwap24Hr { get; set; }
         public String Explorer { get; set; }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] String prop = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
     }
 }

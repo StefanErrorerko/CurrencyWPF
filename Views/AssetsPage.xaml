@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:CurrencyWPF.Views"
       xmlns:vm="clr-namespace:CurrencyWPF.ViewModels"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800">
+      d:DesignHeight="450" d:DesignWidth="800"
+      Style="{StaticResource ModalPage}">
 
     <UserControl.DataContext>
         <vm:AssetsPageVM />
@@ -18,19 +19,20 @@
                   CanUserAddRows="True"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
-                  ItemsSource="{Binding CurrenciesList}">
+                  ItemsSource="{Binding CurrenciesList}"
+                  SelectedItem="{Binding SelectedCurrency}">
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">
                     <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick" />
                 </Style>
             </DataGrid.CellStyle>
             <DataGrid.Columns>
-                <DataGridTextColumn Width ="*" Binding="{Binding Path=Symbol}"/>
-                <DataGridTextColumn Width ="*" Header="Name"  Binding="{Binding Path=Name}"/>
-                <DataGridTextColumn Width ="*" Header="Price" Binding="{Binding Path=PriceUsd}"/>
-                <DataGridTextColumn Width ="*" Header="ChangePercent" Binding="{Binding Path=ChangePercent24Hr}"/>
-                <DataGridTextColumn Width ="*" Header="VolumeFor24Hr" Binding="{Binding Path=VolumeUsd24Hr}"/>
-                <DataGridTextColumn Width ="*" Header="MarketCapitalization" Binding="{Binding Path=MarketCapUsd}"/>
+                <DataGridTextColumn Width ="*" Binding="{Binding Symbol}"/>
+                <DataGridTextColumn Width ="*" Header="Name"  Binding="{Binding Name}"/>
+                <DataGridTextColumn Width ="*" Header="Price" Binding="{Binding PriceUsd}"/>
+                <DataGridTextColumn Width ="*" Header="ChangePercent" Binding="{Binding ChangePercent24Hr}"/>
+                <DataGridTextColumn Width ="*" Header="VolumeFor24Hr" Binding="{Binding VolumeUsd24Hr}"/>
+                <DataGridTextColumn Width ="*" Header="MarketCapitalization" Binding="{Binding MarketCapUsd}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Current state of major cryptocurrencies" 

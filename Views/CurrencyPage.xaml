@@ -7,7 +7,8 @@
       xmlns:viewmodels="clr-namespace:CurrencyWPF.ViewModels" 
       d:DataContext="{d:DesignInstance Type=viewmodels:CurrencyPageVM}"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800">
+      d:DesignHeight="450" d:DesignWidth="800"
+      Style="{StaticResource ModalPage}">
 
     <UserControl.DataContext>
         <viewmodels:CurrencyPageVM />
@@ -20,33 +21,42 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0"
-                   Text="{Binding CurrentCurrency.Name}"/>
-        <TextBlock Grid.Row="0" Grid.Column="1"
-                   Text="{Binding CurrentCurrency.PriceUsd}" />
-        <TextBlock Grid.Row="0" Grid.Column="2" 
-                   Text="{Binding CurrentCurrency.ChangePercent24Hr}" />
-        <TextBlock Grid.Row="0" Grid.Column="3" 
-                   Text="{Binding CurrentCurrency.VolumeUsd24Hr}" />
+        <Grid 
+              Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
+                       Text="{Binding Path=CurrentCurrency.Name}"/>
+            <TextBlock Grid.Column="1"
+                       Text="{Binding Path=CurrentCurrency.PriceUsd}" />
+            <TextBlock Grid.Column="2" 
+                       Text="{Binding ChangePercent24Hr}" />
+            <TextBlock Grid.Column="3" 
+                       Text="{Binding VolumeUsd24Hr}" />   
+        </Grid>
+        
 
         <StackPanel Grid.Row="1" Grid.Column="0">
-            <TextBlock Text="History place" 
+            <TextBlock Text="History Place" 
                        HorizontalAlignment="Center" />
         </StackPanel>
 
-        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" 
+        <TextBlock Grid.Row="1" Grid.Column="1" 
                    Text="Chart place"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"/>
 
         <Button Grid.Row="0"
-                Grid.Column="4" 
+                Grid.Column="2" 
                 Content="Back"
                 Click="Button_Click"/>
     </Grid>

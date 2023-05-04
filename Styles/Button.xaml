@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
     <Style x:Key="MainButton"
            TargetType="RadioButton">
 
@@ -13,8 +14,8 @@
                     <Border x:Name="MainBorder"
                             Height="50" Width="220" BorderThickness="0">
                         <Border.Background>
-                            <SolidColorBrush x:Name="BorderBackground" 
-                                             Color="{StaticResource SecondaryBlue}" />
+                            <SolidColorBrush Color="#a0c4ff"
+                                             x:Name="BorderBackground"/>
                         </Border.Background>
 
                         <Grid>
@@ -41,8 +42,8 @@
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetName="BorderBackground"
                                                     Storyboard.TargetProperty="Color"
-                                                    From="{StaticResource PrimaryPurple}"
-                                                    To="{StaticResource PrimaryLight}"
+                                                    From="#a0c4ff"
+                                                    To="#fffffc"
                                                     Duration="0:0:0.3"/>
                                 </Storyboard>
                             </BeginStoryboard>
@@ -53,8 +54,8 @@
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetName="BorderBackground"
                                                     Storyboard.TargetProperty="Color"
-                                                    From="{StaticResource PrimaryLight}"
-                                                    To="{StaticResource PrimaryPurple}"
+                                                    From="#fffffc"
+                                                    To="#a0c4ff"
                                                     Duration="0:0:0.3"/>
                                 </Storyboard>
                             </BeginStoryboard>
