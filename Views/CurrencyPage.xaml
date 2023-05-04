@@ -13,7 +13,6 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
-            <RowDefinition Height="50" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -37,8 +36,8 @@
         </Button>
         
         <DataGrid x:Name="dgCurrencies"
-                  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-                  Margin="10,51,10,10"
+                  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                  Margin="10"
                   CanUserAddRows="True"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
@@ -54,31 +53,45 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+        <Grid Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0"
+            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
                        Text="{Binding CurrentCurrency.Name}"
                        Style="{StaticResource CurrencyText}"/>
-            <TextBlock Grid.Column="1"
+            <TextBlock Grid.Row="1" Grid.Column="0"
+                       VerticalAlignment="Top" HorizontalAlignment="Right"
+                       Text="Price, USD" 
+                       Margin="5"
+                       Style="{StaticResource SmallText}"/>
+            <TextBlock Grid.Row="1" Grid.Column="1"
                        Text="{Binding Path=CurrentCurrency.PriceUsd, StringFormat=N2}" 
                        Style="{StaticResource CurrencyText}"/>
-            <TextBlock Grid.Column="2" 
+            <TextBlock Grid.Row="2" Grid.Column="0"
+                       VerticalAlignment="Top" HorizontalAlignment="Right"
+                       Text="Percent changing per 24 HR, %" 
+                       Margin="5"
+                       Style="{StaticResource SmallText}"/>
+            <TextBlock Grid.Row="2" Grid.Column="1"
                        Text="{Binding CurrentCurrency.ChangePercent24Hr, StringFormat=N4}" 
                        Style="{StaticResource CurrencyText}"/>
-            <TextBlock Grid.Column="3" 
+            <TextBlock Grid.Row="3" Grid.Column="0"
+                       VerticalAlignment="Top" HorizontalAlignment="Right"
+                       Text="Volume per 24 Hr, USD" 
+                       Margin="5"
+                       Style="{StaticResource SmallText}"/>
+            <TextBlock Grid.Row="3" Grid.Column="1"
                        Text="{Binding CurrentCurrency.VolumeUsd24Hr, StringFormat=N2}" 
                        Style="{StaticResource CurrencyText}"/>
         </Grid>
-
-        <TextBlock Grid.Row="2" Grid.Column="2" 
-                   Text="Chart place"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"/>
     </Grid>
 </UserControl>
