@@ -16,8 +16,9 @@ namespace CurrencyWPF.ViewModels
     public class CurrencyPageVM : ViewModelBase
     {
         Currency _currentCurrency;
+        List<Currency> _currencyHistoryList;
         
-        public ObservableCollection<Currency> CurrenciesHistory = new ObservableCollection<Currency>();
+        public ObservableCollection<Currency> CurrenciesHistory = new();
         public Currency CurrentCurrency
         {
             get => _currentCurrency;
@@ -27,18 +28,27 @@ namespace CurrencyWPF.ViewModels
                 OnPropertyChanged();
             }
         }
+        public List<Currency> CurrencyHistoryList
+        {
+            get => _currencyHistoryList;
+            set
+            {
+                _currencyHistoryList = value;
+                OnPropertyChanged();
+            }
+        }
         public CurrencyPageVM(Currency currency)
         {
-            var id = currency.Id;
-            suka = new RelayCommand(() => RequestDataById(id));
-            //RequestDataById(id);
-            //RequestHistoryById(id);
+            RequestDataById(id: currency.Id);
+            RequestHistoryById(id: currency.Id);
         }
 
-        public RelayCommand suka { get; }
-
-        private async void RequestDataById(String id) => CurrentCurrency = await CurrencyProcessor.GetAssetsById(id);
-        private async void RequestHistoryById(String id) 
-            => CurrenciesHistory = new (await CurrencyProcessor.GetAssetsByIdHistory(id));
+        private async void RequestDataById(String id) 
+            => CurrentCurrency = await CurrencyProcessor.GetAssetsById(id);
+        private async void RequestHistoryById(String id)
+        {
+            CurrencyHistoryList = await CurrencyProcessor.GetAssetsByIdHistory(id, "d1");
+            CurrenciesHistory = new(CurrencyHistoryList);
+        }
     }
 }

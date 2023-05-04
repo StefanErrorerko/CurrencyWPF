@@ -96,9 +96,9 @@ namespace CurrencyWPF.Processors
             }
         }
 
-        public static async Task<List<Currency>> GetAssetsByIdHistory(String id)
+        public static async Task<List<Currency>> GetAssetsByIdHistory(String id, String interval)
         {
-            var url = _apiUrl + $"assets/{id}/history";
+            var url = _apiUrl + $"assets/{id}/history?interval={interval}";
             using (var response = await ApiHelper.Client.GetAsync(url))
             {
                 if (response.IsSuccessStatusCode)
