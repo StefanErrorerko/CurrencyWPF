@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CurrencyWPF.Models
 {
-    public class CurrencyJsonData
+    public class JsonData<T>
     {
-        public List<Currency> Data { get; set; }
+        public T Data { get; set; }
     }
 }

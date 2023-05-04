@@ -8,24 +8,13 @@ using System.Threading.Tasks;
 
 namespace CurrencyWPF.Models
 {
-    public class Currency :INotifyPropertyChanged
+
+    public class Currency 
     {
         public String Id { get; set; } = String.Empty;
         public Int16 Rank { get; set; }
         public String Symbol { get; set; } = String.Empty;
-        String _name;
-        public String Name 
-        {
-            get => _name;
-            set
-            { 
-                if (_name != value)
-                {
-                    _name = value;
-                }
-                OnPropertyChanged();
-            }
-        }
+        public String Name { get; set; } = String.Empty;
         public Decimal Supply { get; set; }
         public Decimal? MaxSupply { get; set; }
         public Decimal MarketCapUsd { get; set; }
@@ -33,12 +22,6 @@ namespace CurrencyWPF.Models
         public Decimal PriceUsd { get; set; }
         public Decimal ChangePercent24Hr { get; set; }
         public Decimal? Vwap24Hr { get; set; }
-        public String Explorer { get; set; }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] String prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-        }
+        public String Explorer { get; set; } = String.Empty;
     }
 }

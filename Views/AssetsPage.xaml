@@ -35,7 +35,8 @@
                 <DataGridTextColumn Width ="*" Header="MarketCapitalization" Binding="{Binding MarketCapUsd}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Current state of major cryptocurrencies" 
+        <Label x:Name="Lbl"
+               Content="Current state of major cryptocurrencies" 
                Style="{DynamicResource MainWindowLbl}"
                HorizontalAlignment="Center" 
                Margin="0,16,0,0" 
@@ -53,7 +54,7 @@
                 Margin="5, 25, 0, 0"
                 Width="100"
                 Height="20"
-                Command="{Binding StopUpdate}"/>
+                Click="Button_Click"/>
 
         <Border x:Name="SearchAreaBorder"
                 Style="{DynamicResource SearchAreaBorder}" 

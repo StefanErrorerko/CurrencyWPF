@@ -11,34 +11,35 @@ using System.Threading.Tasks;
 
 namespace CurrencyWPF.Processors
 {
-    public class CurrencyProcessor
+    public static class CurrencyProcessor
     {
-        private Task<List<Currency>>? _periodicTask;
-        private readonly PeriodicTimer _timer;
-        private readonly CancellationTokenSource _cts = new();
+        private static Task<List<Currency>>? _periodicTask;
+        private readonly static PeriodicTimer _timer;
+        private readonly static CancellationTokenSource _cts = new();
+        private readonly static String _apiUrl = "http://api.coincap.io/v2/";
 
-        public CurrencyProcessor(TimeSpan interval)
-        {
-            _timer = new PeriodicTimer(interval);
-        }
-        public CurrencyProcessor()
-        {
-            _timer = new PeriodicTimer(TimeSpan.FromMilliseconds(10000));
-        }
+        //public static CurrencyProcessor(TimeSpan interval)
+        //{
+        //    _timer = new PeriodicTimer(interval);
+        //}
+        //public CurrencyProcessor()
+        //{
+        //    _timer = new PeriodicTimer(TimeSpan.FromMilliseconds(10000));
+        //}
 
-        public async Task<List<Currency>> StartPeriodicLoadCurrencies()
+        public static async Task<List<Currency>> StartPeriodicLoadCurrencies()
         {
             _periodicTask = RunAsync();
             return await _periodicTask;
         }
 
-        private async Task<List<Currency>> RunAsync()
+        private static async Task<List<Currency>> RunAsync()
         {
             try
             {
                 while (await _timer.WaitForNextTickAsync(_cts.Token))
                 {
-                    return await LoadCurrencies();
+                    return await GetAssets();
                 }
                 throw new NotImplementedException();
             }
@@ -48,7 +49,7 @@ namespace CurrencyWPF.Processors
             }
         }
 
-        public async Task StopAsync()
+        public static async Task StopAsync()
         {
             if (_periodicTask is null)
             {
@@ -60,16 +61,157 @@ namespace CurrencyWPF.Processors
             _cts.Dispose();
         }
 
-        public async Task<List<Currency>> LoadCurrencies()
+        public static async Task<List<Currency>> GetAssets()
         {
-            string url = "http://api.coincap.io/v2/assets";
+            var url = _apiUrl + "assets";
             using (var response = await ApiHelper.Client.GetAsync(url))
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    var json = await response.Content.ReadAsAsync<CurrencyJsonData>();
+                    var json = await response.Content.ReadAsAsync<JsonArrayData<Currency>>();
                     var currencies = json.Data.ToList();
                     return currencies;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<Currency> GetAssetsById(String id)
+        {
+            var url = _apiUrl + $"assets/{id}/";
+            using (var response = await ApiHelper.Client.GetAsync(url))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsAsync<JsonData<Currency>>();
+                    return json.Data;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<List<Currency>> GetAssetsByIdHistory(String id)
+        {
+            var url = _apiUrl + $"assets/{id}/history";
+            using (var response = await ApiHelper.Client.GetAsync(url))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsAsync<JsonArrayData<Currency>>();
+                    var currencies = json.Data.ToList();
+                    return currencies;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<List<Market>> GetAssetsByIdMarkets(String id)
+        {
+            var url = _apiUrl + $"assets/{id}/markets";
+            using (var response = await ApiHelper.Client.GetAsync(url))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsAsync<JsonArrayData<Market>>();
+                    var markets = json.Data.ToList();
+                    return markets;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<List<Rate>> GetRates()
+        {
+            var url = _apiUrl + $"rates";
+            using (var response = await ApiHelper.Client.GetAsync(url))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsAsync<JsonArrayData<Rate>>();
+                    var rates = json.Data.ToList();
+                    return rates;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<Rate> GetRatesById(String id)
+        {
+            var url = _apiUrl + $"rates/{id}";
+            using (var response = await ApiHelper.Client.GetAsync(url))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var rate = await response.Content.ReadAsAsync<Rate>();
+                    return rate;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<Exchange> GetExchangesById(String id)
+        {
+            var url = _apiUrl + $"exchanges/{id}";
+            using (var response = await ApiHelper.Client.GetAsync(url))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var exchange = await response.Content.ReadAsAsync<Exchange>();
+                    return exchange;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<List<Exchange>> GetExchanges()
+        {
+            var url = _apiUrl + $"exchanges";
+            using (var response = await ApiHelper.Client.GetAsync(url))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsAsync<JsonArrayData<Exchange>>();
+                    var exchanges = json.Data.ToList();
+                    return exchanges;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<List<Market>> GetMarkets()
+        {
+            var url = _apiUrl + $"markets";
+            using (var response = await ApiHelper.Client.GetAsync(url))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsAsync<JsonArrayData<Market>>();
+                    var markets = json.Data.ToList();
+                    return markets;
                 }
                 else
                 {

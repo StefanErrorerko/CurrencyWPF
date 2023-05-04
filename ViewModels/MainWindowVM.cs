@@ -37,16 +37,20 @@ namespace CurrencyWPF.ViewModels
         public MainWindowVM()
         {
             AssetsOpen = new RelayCommand(() => AssetsOpenCommandHandler());
-            CurrentView = new AssetsPageVM();
+            //CurrentView = new AssetsPageVM();
+            CurrencyDetailsOpen = new RelayCommand(() => CurrencyDetailsOpenCommandHandler());
+            ApiHelper.InitializeClient();
         }
         #endregion
 
         #region Commands
         public RelayCommand AssetsOpen { get; }
+        public RelayCommand CurrencyDetailsOpen { get; }
         #endregion
 
         #region Command Handlers
         private void AssetsOpenCommandHandler() => CurrentView = new AssetsPageVM();
+        private void CurrencyDetailsOpenCommandHandler() => CurrentView = new CurrencyPageVM(new Currency());
         #endregion
     }
 }

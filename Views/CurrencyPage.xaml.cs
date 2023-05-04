@@ -28,7 +28,7 @@ namespace CurrencyWPF.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            (this.Parent as AssetsPage).Content = null;
+            (this.Parent as AssetsPage).Content = new AssetsPageVM();
         }
     }
 }

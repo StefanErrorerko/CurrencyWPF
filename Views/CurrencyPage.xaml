@@ -10,10 +10,6 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Style="{StaticResource ModalPage}">
 
-    <UserControl.DataContext>
-        <viewmodels:CurrencyPageVM />
-    </UserControl.DataContext>
-    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
@@ -43,12 +39,23 @@
             <TextBlock Grid.Column="3" 
                        Text="{Binding CurrentCurrency.VolumeUsd24Hr}" />   
         </Grid>
-        
 
-        <StackPanel Grid.Row="1" Grid.Column="0">
-            <TextBlock Text="History Place" 
-                       HorizontalAlignment="Center" />
-        </StackPanel>
+
+        <ItemsControl x:Name="History" ItemsSource="{Binding CurrenciesHistory}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding PriceUsd}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+                      
 
         <TextBlock Grid.Row="1" Grid.Column="1" 
                    Text="Chart place"
@@ -58,6 +65,6 @@
         <Button Grid.Row="0"
                 Grid.Column="2" 
                 Content="Back"
-                Click="Button_Click"/>
+                Command="{Binding suka}"/>
     </Grid>
 </UserControl>
