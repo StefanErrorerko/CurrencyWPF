@@ -30,7 +30,7 @@
             
             <Grid HorizontalAlignment="Left"
               Width="220">
-                <Border Background="#caffbf"
+                <Border Background="{StaticResource Menu}"
                         CornerRadius="15,0,0,15"/>
 
                 <StackPanel Height="400"
@@ -48,7 +48,7 @@
                     </RadioButton>
                     <RadioButton x:Name="CurrencyButton"
                                  Style="{StaticResource MainButton}"
-                                 Command="{Binding CurrencyDetailsOpen}">
+                                 Command="{Binding}">
                         <Grid>
                             
                             <TextBlock Style="{DynamicResource MediumText}"
@@ -59,7 +59,7 @@
             </Grid>
             <Grid Grid.Column="1">
                 <ContentControl x:Name="Pages"
-                      Content="{Binding CurrentView}" />
+                                Content="{Binding CurrentView}" />
             </Grid>
         </Grid>
     </Grid>

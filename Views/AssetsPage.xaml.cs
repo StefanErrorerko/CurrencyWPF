@@ -46,10 +46,5 @@ namespace CurrencyWPF.Views
             cv.DataContext = cvm;
             Content = cv;
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Lbl.Content = "Poshli nahui";
-        }
     }
 }

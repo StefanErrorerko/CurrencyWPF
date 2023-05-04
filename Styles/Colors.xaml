@@ -17,4 +17,11 @@
 
     <Color x:Key="DarkText">#000814</Color>
     <Color x:Key="LightText">#ffffff</Color>
+
+    <LinearGradientBrush x:Key="Menu" StartPoint="0.75, 0" EndPoint="0, 1">
+        <GradientStop Color="{StaticResource SecondaryBlue}" Offset="0.1" />
+        <GradientStop Color="{StaticResource PrimaryLight}" Offset="0.5" />
+        <GradientStop Color="{StaticResource PrimaryViolet}" Offset="1" />
+    </LinearGradientBrush>
+
 </ResourceDictionary>

@@ -20,7 +20,8 @@
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
                   ItemsSource="{Binding CurrenciesList}"
-                  SelectedItem="{Binding SelectedCurrency}">
+                  SelectedItem="{Binding SelectedCurrency}"
+                  SelectionMode="Single">
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">
                     <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick" />
@@ -41,20 +42,6 @@
                HorizontalAlignment="Center" 
                Margin="0,16,0,0" 
                VerticalAlignment="Top"/>
-        <Button Content="Request data"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Margin="5, 5, 0, 0"
-                Width="100"
-                Height="20"
-                Command="{Binding RefreshData}"/>
-        <Button Content="Stop Updating"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Margin="5, 25, 0, 0"
-                Width="100"
-                Height="20"
-                Click="Button_Click"/>
 
         <Border x:Name="SearchAreaBorder"
                 Style="{DynamicResource SearchAreaBorder}" 

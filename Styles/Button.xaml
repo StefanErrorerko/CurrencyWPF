@@ -12,9 +12,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="RadioButton">
                     <Border x:Name="MainBorder"
-                            Height="50" Width="220" BorderThickness="0">
+                            Height="50" Width="220" BorderThickness="0"
+                            CornerRadius="0,0,5,5">
                         <Border.Background>
-                            <SolidColorBrush Color="#a0c4ff"
+                            <SolidColorBrush Color="#ffc6ff"
+                                             Opacity="0.5"
                                              x:Name="BorderBackground"/>
                         </Border.Background>
 
@@ -42,8 +44,8 @@
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetName="BorderBackground"
                                                     Storyboard.TargetProperty="Color"
-                                                    From="#a0c4ff"
-                                                    To="#9bf6ff"
+                                                    From="#ffc6ff"
+                                                    To="#fffffc"
                                                     Duration="0:0:0.3"/>
                                 </Storyboard>
                             </BeginStoryboard>
@@ -54,8 +56,8 @@
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetName="BorderBackground"
                                                     Storyboard.TargetProperty="Color"
-                                                    From="#9bf6ff"
-                                                    To="#a0c4ff"
+                                                    From="#fffffc"
+                                                    To="#ffc6ff"
                                                     Duration="0:0:0.3"/>
                                 </Storyboard>
                             </BeginStoryboard>

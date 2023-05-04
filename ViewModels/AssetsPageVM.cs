@@ -45,19 +45,17 @@ namespace CurrencyWPF.ViewModels
         public AssetsPageVM()
         {
             Currencies = new ObservableCollection<Currency>();
-
-            RefreshData = new RelayCommand(() => RefreshDataCommandHandler());
+            RequestData();
             StopUpdate = new RelayCommand(() => StopUpdateCommandHandler());
         }
         #endregion
 
         #region Commands
-        public RelayCommand RefreshData { get; }
         public RelayCommand StopUpdate { get; }
         #endregion
 
         #region CommandHandlers
-        private async void RefreshDataCommandHandler()
+        private async void RequestData()
         {
             CurrenciesList = await CurrencyProcessor.GetAssets();
             Currencies = new ObservableCollection<Currency>(CurrenciesList);
