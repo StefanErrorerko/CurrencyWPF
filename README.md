@@ -12,3 +12,7 @@ A user is able to:
 - see more detail with history of its price;
 - seek such currencies via independent modal page
 
+Shortcuts of app:
+![image](https://user-images.githubusercontent.com/76735417/236263090-9d8d3dc4-a7ae-4999-9676-e99d74658ae7.png)
+![image](https://user-images.githubusercontent.com/76735417/236263502-4ff6cf90-c010-4e48-8f0b-84ddc3edff9d.png)
+
