@@ -12,7 +12,6 @@ namespace CurrencyWPF.ViewModels
     public class AssetsPageVM : ViewModelBase
     {
         #region Constants
-        // Const num of top currencies to display
         public const int topNum = 25;
         #endregion
 
