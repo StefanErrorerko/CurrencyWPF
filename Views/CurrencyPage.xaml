@@ -21,6 +21,37 @@
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
+        
+        <Border x:Name="SearchAreaBorder"
+                Style="{DynamicResource SearchAreaBorder}" 
+                HorizontalAlignment="Center" 
+                 VerticalAlignment="Bottom" 
+                 Width="140" 
+                 Height="20" 
+                Grid.Row="0" Grid.Column="3">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Source="/Resources/magnifier.png"
+                    Grid.Row="0" Grid.Column="0"
+                    Width="50"/>
+                <Label x:Name="SearchTextBoxHiddenLabel"
+                       Grid.Row="0" Grid.Column="1" 
+                       Padding="2,0,0,0"
+                       Content="Search by the name"
+                       Style="{DynamicResource SearchTextBoxHiddenLabel}"/>
+                <TextBox x:Name="SearchTextBox" 
+                        Grid.Row="0" Grid.Column="1"
+                        Style="{DynamicResource SearchTextBox}"
+                        TextChanged="SearchTextBox_TextChanged"
+                         Text="{Binding SearchValue}"/>
+            </Grid>
+        </Border>
 
         <Button Grid.Row="0" Grid.Column="0"
                 Background="Transparent"
@@ -78,7 +109,7 @@
                        Style="{StaticResource CurrencyText}"/>
             <TextBlock Grid.Row="2" Grid.Column="0"
                        VerticalAlignment="Top" HorizontalAlignment="Right"
-                       Text="Percent changing per 24 HR, %" 
+                       Text="Change per 24 HR, %" 
                        Margin="5"
                        Style="{StaticResource SmallText}"/>
             <TextBlock Grid.Row="2" Grid.Column="1"
@@ -93,5 +124,6 @@
                        Text="{Binding CurrentCurrency.VolumeUsd24Hr, StringFormat=N2}" 
                        Style="{StaticResource CurrencyText}"/>
         </Grid>
+        
     </Grid>
 </UserControl>

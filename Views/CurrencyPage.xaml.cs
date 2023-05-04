@@ -30,5 +30,19 @@ namespace CurrencyWPF.Views
         {
             (this.Parent as AssetsPage).Content = new AssetsPageVM();
         }
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (String.IsNullOrEmpty(SearchTextBox.Text))
+            {
+                SearchTextBoxHiddenLabel.Visibility = Visibility.Visible;
+                (DataContext as CurrencyPageVM).SearchValue = String.Empty;
+            }
+            else
+            {
+                SearchTextBoxHiddenLabel.Visibility = Visibility.Hidden;
+                (DataContext as CurrencyPageVM).SearchValue = SearchTextBox.Text;
+            }
+        }
     }
 }

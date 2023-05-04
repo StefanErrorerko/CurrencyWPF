@@ -55,7 +55,7 @@
                     </RadioButton>
                     <RadioButton x:Name="CurrencyButton"
                                  Style="{StaticResource MainButton}"
-                                 Command="{Binding}">
+                                 Command="{Binding CurrencyDetailsOpen}">
                         <Grid>
                             <TextBlock Style="{DynamicResource MediumText}"
                                             Text="Currency" />

@@ -50,7 +50,7 @@ namespace CurrencyWPF.ViewModels
 
         #region Command Handlers
         private void AssetsOpenCommandHandler() => CurrentView = new AssetsPageVM();
-        private void CurrencyDetailsOpenCommandHandler() => CurrentView = new CurrencyPageVM(new Currency());
+        private void CurrencyDetailsOpenCommandHandler() => CurrentView = new CurrencyPageVM();
         #endregion
     }
 }

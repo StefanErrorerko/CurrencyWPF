@@ -17,7 +17,10 @@ namespace CurrencyWPF.ViewModels
     {
         Currency _currentCurrency;
         List<CurrencyInfo> _currencyHistoryList;
-        
+        List<Currency> _currenciesList;
+        String _searchValue;
+
+
         public ObservableCollection<CurrencyInfo> CurrenciesHistory = new();
         public Currency CurrentCurrency
         {
@@ -28,6 +31,16 @@ namespace CurrencyWPF.ViewModels
                 OnPropertyChanged();
             }
         }
+        public String SearchValue
+        {
+            get => _searchValue;
+            set
+            {
+                _searchValue = value;
+                OnPropertyChanged(nameof(SearchValue));
+                SearchByValueAsync();
+            }
+        }
         public List<CurrencyInfo> CurrencyHistoryList
         {
             get => _currencyHistoryList;
@@ -36,6 +49,9 @@ namespace CurrencyWPF.ViewModels
                 _currencyHistoryList = value;
                 OnPropertyChanged();
             }
+        }
+        public CurrencyPageVM() 
+        {
         }
         public CurrencyPageVM(Currency currency)
         {
@@ -49,6 +65,29 @@ namespace CurrencyWPF.ViewModels
         {
             CurrencyHistoryList = await CurrencyProcessor.GetAssetsByIdHistory(id, "d1");
             CurrenciesHistory = new(CurrencyHistoryList);
+        }
+
+        private async Task SearchByValueAsync()
+        {
+            if(_currenciesList is null)
+            {
+                _currenciesList = await CurrencyProcessor.GetAssets();
+            }
+            if (!String.IsNullOrEmpty(SearchValue))
+            {
+                var currency = _currenciesList
+                    .Where(c => c.Id
+                        .Contains(SearchValue, StringComparison.OrdinalIgnoreCase)
+                            || c.Name.Contains(SearchValue, StringComparison.OrdinalIgnoreCase)
+                            || c.Symbol.Contains(SearchValue, StringComparison.OrdinalIgnoreCase))
+                    .Select(c => c)
+                    .FirstOrDefault();
+                if(currency != null)
+                {
+                    CurrentCurrency = currency;
+                }
+            }
+
         }
     }
 }
