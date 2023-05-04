@@ -85,7 +85,7 @@ namespace CurrencyWPF.ViewModels
                 if(currency != null)
                 {
                     CurrentCurrency = currency;
-                    RequestDataById(currency.Id);
+                    RequestHistoryById(currency.Id);
                 }
             }
 
